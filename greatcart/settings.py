@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'category',
     'accounts',
     'store',
+    'carts',
 ]
 
 MIDDLEWARE = [
@@ -66,6 +67,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'category.context_processors.menu_links',
+                'carts.context_processors.counter',
             ],
         },
     },
@@ -96,6 +98,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {
+            'min_length': 12, }
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
@@ -103,6 +107,14 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+    # {
+    #     'NAME': 'greatcart.accounts.validators.NumberValidator',
+    #     'OPTIONS': {
+    #         'min_digits': 3, }
+    # },
+    # {'NAME': 'greatcart.accounts.validators.UppercaseValidator', },
+    # {'NAME': 'greatcart.accounts.validators.LowercaseValidator', },
+    # {'NAME': 'greatcart.accounts.validators.SymbolValidator', },
 ]
 
 
@@ -135,3 +147,19 @@ MEDIA_ROOT = BASE_DIR /'media'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+}
+
+
+# configure email host
+# SMTP CONFIGURATION
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'adeyemovictoroyin@gmail.com'
+DEFAULT_FROM_EMAIL = 'adeyemovictoroyin@gmail.com'
+EMAIL_HOST_PASSWORD = 'Youngvic12'
+EMAIL_USE_TLS = True
